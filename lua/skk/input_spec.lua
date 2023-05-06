@@ -29,4 +29,11 @@ describe("Tests for input.lua", function()
     end
     assert.are.equals("あめんぼ", context.fixed)
   end)
+
+  it("multiple chars (use tmpResult and its next)", function()
+    for char in vim.gsplit("uwwwa", "") do
+      Input.kanaInput(context, char)
+    end
+    assert.are.equals("うwっわ", context.fixed)
+  end)
 end)

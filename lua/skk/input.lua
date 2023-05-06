@@ -9,24 +9,19 @@ function Input.kanaInput(context, char)
     -- 候補が一つかつ完全一致。確定
     context.fixed = context.fixed .. candidates[1].output
     context.feed = candidates[1].next
-    context.tmpResult = nil
+    context:updateTmpResult()
   elseif #candidates > 0 then
     -- 未確定
     context.feed = input
-    context.tmpResult = nil
-    for _, candidate in ipairs(candidates) do
-      if candidate.input == input then
-        context.tmpResult = candidate
-        break
-      end
-    end
+    context:updateTmpResult()
   elseif context.tmpResult then
     -- 新しい入力によりtmpResultで確定
     context.fixed = context.fixed .. context.tmpResult.output
-    context.feed = context.tmpResult.next .. char
-    context.tmpResult = nil
+    context.feed = context.tmpResult.next
+    context:updateTmpResult()
+    Input.kanaInput(context, char)
   else
-    -- 入力ミス
+    -- 入力ミス。context.tmpResultは既にnil
     context.feed = ""
   end
 end
