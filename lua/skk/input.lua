@@ -13,7 +13,7 @@ function Input.kanaInput(context, char)
   elseif #candidates > 0 then
     -- 未確定
     context.feed = input
-    context:updateTmpResult()
+    context:updateTmpResult(candidates)
   elseif context.tmpResult then
     -- 新しい入力によりtmpResultで確定
     context.fixed = context.fixed .. context.tmpResult.output

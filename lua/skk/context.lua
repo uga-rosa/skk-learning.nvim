@@ -15,9 +15,11 @@ function Context.new()
   return self
 end
 
-function Context:updateTmpResult()
+---@param candidates? KanaRule[]
+function Context:updateTmpResult(candidates)
+  candidates = candidates or self.kanaTable:filter(self.feed)
   self.tmpResult = nil
-  for _, candidate in ipairs(self.kanaTable:filter(self.feed)) do
+  for _, candidate in ipairs(candidates) do
     if candidate.input == self.feed then
       self.tmpResult = candidate
       break
