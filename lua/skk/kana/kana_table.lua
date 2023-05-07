@@ -3,6 +3,7 @@
 ---@field output string
 ---@field next string
 
+---@type KanaRule[]
 local kanaRules = {
   { input = "-", output = "ー", next = "" },
   { input = "~", output = "〜", next = "" },
