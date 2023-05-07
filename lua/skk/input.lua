@@ -22,7 +22,7 @@ function Input.kanaInput(context, char)
     Input.kanaInput(context, char)
   else
     -- 入力ミス。context.tmpResultは既にnil
-    context.feed = ""
+    context.feed = char
   end
 end
 

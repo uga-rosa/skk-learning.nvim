@@ -33,4 +33,8 @@ describe("Tests for input.lua", function()
   it("multiple chars (use tmpResult and its next)", function()
     test("uwwwa", "うwっわ")
   end)
+
+  it("mistaken input", function()
+    test("rkakyra", "から")
+  end)
 end)
