@@ -1,0 +1,21 @@
+local PreEdit = require("skk.preedit")
+
+describe("preedit test", function()
+  it("normal", function()
+    local preEdit = PreEdit.new()
+    -- input 'ひら'
+    assert.equals("h", preEdit:output("h"))
+    preEdit:doKakutei("ひ")
+    assert.equals("\bひ", preEdit:output(""))
+    assert.equals("r", preEdit:output("r"))
+    preEdit:doKakutei("ら")
+    assert.equals("\bら", preEdit:output(""))
+  end)
+
+  it("emoji", function()
+    local preEdit = PreEdit.new()
+    assert.equals("💩", preEdit:output("💩"))
+    assert.equals("\b🚽", preEdit:output("🚽"))
+    assert.equals("\b🍦", preEdit:output("🍦"))
+  end)
+end)
