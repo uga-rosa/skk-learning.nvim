@@ -1,5 +1,5 @@
-local Input = require("skk.input")
 local Context = require("skk.context")
+local dispatch = require("skk.testutil").dispatch
 
 ---@type Context
 local context
@@ -7,10 +7,8 @@ local context
 ---@param input string
 ---@param expect string
 local function test(input, expect)
-  for char in vim.gsplit(input, "") do
-    Input.kanaInput(context, char)
-  end
-  assert.are.equals(expect, context.fixed)
+  dispatch(context, input)
+  assert.are.equals(expect, context.preEdit:output(""))
 end
 
 describe("Tests for input.lua", function()
