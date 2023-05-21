@@ -1,4 +1,4 @@
-local kanaTable = require("skk.kana.kana_table")
+local KanaTable = require("skk.kana.kana_table")
 
 ---@class Context
 ---@field kanaTable KanaTable 全ての変換ルール
@@ -9,7 +9,7 @@ local Context = {}
 
 function Context.new()
   local self = setmetatable({}, { __index = Context })
-  self.kanaTable = kanaTable.new()
+  self.kanaTable = KanaTable.new()
   self.fixed = ""
   self.feed = ""
   return self
