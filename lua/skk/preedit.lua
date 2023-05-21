@@ -26,7 +26,7 @@ function PreEdit:output(next)
   if self.kakutei == "" and vim.startswith(next, self.current) then
     ret = next:sub(#self.current)
   else
-    local current_len = utf8.len(self.current) --[[@as integer]]
+    local current_len = utf8.len(self.current) or 0 --[[@as integer]]
     ret = string.rep("\b", current_len) .. self.kakutei .. next
   end
   self.current = next
